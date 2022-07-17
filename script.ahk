@@ -43,10 +43,10 @@ If (!window_found) {
     hotkey, ^n, reload_script
     loop {
         SetControlDelay -1
-        ControlClick,, ahk_id %this_id%,, RIGHT,, D
+        ControlClick,, ahk_id %this_id%,, RIGHT,, NA D
         sleep, 2500
         SetControlDelay -1
-        ControlClick,, ahk_id %this_id%,, RIGHT,, U
+        ControlClick,, ahk_id %this_id%,, RIGHT,, NA U
 
         SendToMCWindow("d down")
         sleep 1000
