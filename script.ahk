@@ -1,5 +1,5 @@
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
+#SingleInstance force
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
@@ -30,12 +30,18 @@ If (!window_found) {
     return
 } Else {
     WinActivate, ahk_id %this_id%
+    SetTimer, timer, 3600000
+    timer_finished := false
 
     hotkey, ^n, raid_farm
     return
 
     reload_script:
     reload
+    return
+
+    timer:
+    timer_finished := true
     return
 
     raid_farm:
@@ -94,10 +100,25 @@ If (!window_found) {
         sleep 500
         SendToMCWindow("w up")
 
-        loop 35 {
+        loop 37 {
             sleep 1000
             SetControlDelay -1
             ControlClick,, ahk_id %this_id%,,,, NA
+        }
+
+        if (timer_finished) {
+            SendToMCWindow("Escape")
+            SendToMCWindow("Tab")
+            SendToMCWindow("Tab")
+            SendToMCWindow("Tab")
+            SendToMCWindow("Tab")
+            SendToMCWindow("Tab")
+            SendToMCWindow("Tab")
+            SendToMCWindow("Tab")
+            SendToMCWindow("Tab")
+            SendToMCWindow("Enter")
+            MsgBox, "Timer has finished."
+            break
         }
     }
     return
