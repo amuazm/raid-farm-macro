@@ -30,7 +30,7 @@ If (!window_found) {
     return
 } Else {
     WinActivate, ahk_id %this_id%
-    SetTimer, timer, 3600000
+    SetTimer, timer, 4800000
     timer_finished := false
 
     hotkey, ^n, raid_farm
